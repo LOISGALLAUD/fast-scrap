@@ -39,8 +39,7 @@ int main(int argc, char *argv[])
     std::cout << "Utilisation du proxy " << proxy << std::endl;
 
     cpr::Proxies proxy_config{{"http", proxy}};
-    cpr::Response response =
-        cpr::Get(cpr::Url{imageUrl}, proxy_config, cpr::Timeout{TIMEOUT_MS});
+    cpr::Response response = cpr::Get(cpr::Url{imageUrl}, proxy_config);
 
     while (response.status_code != 200)
     {
@@ -48,13 +47,12 @@ int main(int argc, char *argv[])
         proxy = proxies[rand() % proxies.size()];
         std::cout << "Proxy " << proxy << std::endl;
         proxy_config = cpr::Proxies{{"http", proxy}};
-        response = cpr::Get(cpr::Url{imageUrl}, proxy_config,
-                            cpr::Timeout{TIMEOUT_MS});
+        response = cpr::Get(cpr::Url{imageUrl}, proxy_config);
     }
 
     std::ofstream imageFile(outputFileName, std::ios::binary);
     imageFile.write(response.text.c_str(), response.text.size());
-    std::cout << "Image Télécgargée ✅" << std::endl;
+    std::cout << "Image Téléchargée ✅" << std::endl;
     imageFile.close();
 
     return 0;

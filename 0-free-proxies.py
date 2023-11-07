@@ -4,24 +4,6 @@ import pandas as pd
 # URL to fetch free proxies
 FREE_PROXIES_URL = "https://free-proxy-list.net/"
 
-
-def remove_http_prefix(urls):
-    # List to store modified URLs
-    modified_urls = []
-
-    for url in urls:
-        # Check if the URL starts with "http://"
-        if url.startswith("http://"):
-            # Remove the "http://" prefix
-            modified_url = url[len("http://"):]
-            modified_urls.append(modified_url)
-        else:
-            # If the URL doesn't start with "http://", keep it as is
-            modified_urls.append(url)
-
-    return modified_urls
-
-
 if __name__ == "__main__":
     # Get proxies into a pandas DataFrame
     free_proxies = requests.get(FREE_PROXIES_URL, timeout=5)

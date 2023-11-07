@@ -17,5 +17,5 @@ echo "Téléchargement du volume $numero_volume du manga $nom_manga à partir de
 
 for ((i=0; i<30; i++)); do
     num_page=$(printf "%03d" $((page_debut + i)))
-    ./bin/fast-scrap "http://opfrcdn.xyz/uploads/manga/$nom_manga/chapters/Volume%20$numero_volume/${num_page}.jpg" "images/${nom_manga}-${numero_volume}/${num_page}"
+    ./bin/dl-im "http://opfrcdn.xyz/uploads/manga/$nom_manga/chapters/Volume%20$numero_volume/${num_page}.jpg" "images/${nom_manga}-${numero_volume}/${num_page}"
 done
